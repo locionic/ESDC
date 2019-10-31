@@ -7,6 +7,7 @@ package edu.tdt.myentity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,8 +19,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -28,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author truonghongloc
  */
 @Entity
-@Table(name = "Phieu", catalog = "MyEJB8", schema = "public")
+@Table(name = "Phieu", catalog = "MyEJB8V2", schema = "public")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Phieu.findAll", query = "SELECT p FROM Phieu p")
@@ -44,9 +46,9 @@ public class Phieu implements Serializable {
     private Long maP;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2147483647)
-    @Column(name = "NgayLap", nullable = false, length = 2147483647)
-    private String ngayLap;
+    @Column(name = "NgayLap", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date ngayLap;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "phieu")
     private Collection<HhP> hhPCollection;
     @JoinColumn(name = "ID_NCC", referencedColumnName = "ID")
@@ -66,7 +68,7 @@ public class Phieu implements Serializable {
         this.maP = maP;
     }
 
-    public Phieu(Long maP, String ngayLap) {
+    public Phieu(Long maP, Date ngayLap) {
         this.maP = maP;
         this.ngayLap = ngayLap;
     }
@@ -79,11 +81,11 @@ public class Phieu implements Serializable {
         this.maP = maP;
     }
 
-    public String getNgayLap() {
+    public Date getNgayLap() {
         return ngayLap;
     }
 
-    public void setNgayLap(String ngayLap) {
+    public void setNgayLap(Date ngayLap) {
         this.ngayLap = ngayLap;
     }
 

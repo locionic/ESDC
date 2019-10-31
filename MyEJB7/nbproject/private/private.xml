@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/truonghongloc/NetBeansProjects/MyEJB7/src/java/edu/tdt/myentity/HangHoa.java</file>
-            <file>file:/home/truonghongloc/NetBeansProjects/MyEJB7/src/java/edu/tdt/myentity/HdHh.java</file>
-            <file>file:/home/truonghongloc/NetBeansProjects/MyEJB7/src/java/edu/tdt/myentity/HdHhPK.java</file>
-            <file>file:/home/truonghongloc/NetBeansProjects/MyEJB7/src/java/edu/tdt/myentity/HhPPK.java</file>
+            <file>file:/home/truonghongloc/NetBeansProjects/MyEJB7/src/java/edu/tdt/entity/SystemManagementRemote.java</file>
+            <file>file:/home/truonghongloc/NetBeansProjects/MyEJB7/src/java/edu/tdt/entity/SystemManagement.java</file>
         </group>
     </open-files>
 </project-private>
