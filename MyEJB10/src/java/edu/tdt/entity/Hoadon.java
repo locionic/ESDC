@@ -138,7 +138,7 @@ public class Hoadon implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.tdt.entity.Hoadon[ id=" + id + " ]";
+        return "edu.tdt.entity.Hoadon[ id=" + id + ", idnv=" + idNv + ", date=" + date + ", money=" + money + " ]";
     }
     
 }

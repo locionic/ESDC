@@ -162,7 +162,7 @@ public class Nhanvien implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.tdt.entity.Nhanvien[ id=" + id + " ]";
+        return "edu.tdt.entity.Nhanvien[ id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + " ]";
     }
     
 }

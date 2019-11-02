@@ -82,7 +82,7 @@ public class MyEJB10Test {
     System.out.println("\n=========================");
     System.out.println("Welcome to TDTU Bookstore");
     System.out.println("=========================");
-    System.out.print("\n1. Add nhanvien \n5. Add vitri \n6. Add taikhoan \n7. Add nhacc \n8. Add phieu \n9. Add hanghoa \n10. Add hoadon \n11. Add hdhh \n12. Add hhp \n4. Exit \nEnter Choice: ");
+    System.out.print("\n1. Add nhanvien \n5. Add vitri \n6. Add taikhoan \n7. Add nhacc \n8. Add phieu \n9. Add hanghoa \n10. Add hoadon \n11. Add hdhh \n12. Add hhp \n13. Edit nhanvien \n14. Edit hdhh \n15.Edit hhp \n16. Edit vitri \n17. Edit taikhoan \n18. Edit phieu \n19. Edit nhacc \n20. Edit hanghoa \n21. Edit hoadon \n4. Exit \nEnter Choice: ");
     }
     /**
     * Declare a bean to invoke getBooks() method in LibrarySessionBeanRemote
@@ -125,6 +125,9 @@ public class MyEJB10Test {
     // Lookup the LibrarySessionBeanRemote
     MySessionBeanRemote libBean = (MySessionBeanRemote) ctx.lookup(getJNDI());
     int choice = 0;
+    
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    
     while(choice != 4)
     {
     this.showGUI();
@@ -290,7 +293,7 @@ public class MyEJB10Test {
         System.out.print("Enter phieu id: ");
         Long _idp = Long.parseLong(sc.nextLine());
         
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
          
         boolean _continue = true;
         
@@ -342,7 +345,174 @@ public class MyEJB10Test {
         
         libBean.editNhanvien(_idnv, _name, _phone, _address);
         
-    } 
+    } else if (choice == 14) {
+        
+        System.out.print("Enter hoadon id: ");
+        Long _idhd = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter hanghoa id: ");
+        Long _idhh = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter count: ");
+        Long _count = Long.parseLong(sc.nextLine());
+        
+        libBean.editHdhh(_idhh, _idhd, _count);
+        
+    } else if (choice == 15) {
+        
+        
+        
+        try {
+            
+            System.out.print("Enter phieu id: ");
+            Long _idp = Long.parseLong(sc.nextLine());
+
+            System.out.print("Enter hanghoa id: ");
+            Long _idhh = Long.parseLong(sc.nextLine());
+            
+            System.out.print("Enter startdate: ");
+            Date _startdate = df.parse(sc.nextLine());
+            
+            System.out.print("Enter enddate: ");
+            Date _enddate = df.parse(sc.nextLine());
+            
+            System.out.print("Enter count: ");
+            Long _count = Long.parseLong(sc.nextLine());
+            
+            libBean.editHhp(_idp, _idhh, _startdate, _enddate, _count);
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(MyEJB10Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            
+        
+    }  else if (choice == 16) {
+        
+        System.out.print("Enter vitri id need edit: ");
+        Long _idvt = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter nhanvien name: ");
+        String _name = sc.nextLine();
+             
+        
+        libBean.editVitri(_idvt, _name);
+        
+    } else if (choice == 17) {
+        
+        System.out.print("Enter taikhoan id need edit: ");
+        Long _idnv = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter taikhoan name: ");
+        String _name = sc.nextLine();
+        
+        System.out.print("Enter taikhoan password: ");
+        String _password = sc.nextLine();
+             
+        libBean.editTaikhoan(_idnv, _name, _password);          
+        
+    }  else if (choice == 18) {
+        
+        System.out.print("Enter phieu id need edit: ");
+        Long _idp = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter nhacc id: ");
+        Long _idncc = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter nhanvien id: ");
+        Long _idnv = Long.parseLong(sc.nextLine());
+        
+        libBean.editPhieu(_idp, _idncc, _idnv);         
+        
+    }   else if (choice == 19) {
+        
+        System.out.print("Enter nhacc id need edit: ");
+        Long _idnhacc = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter nhacc name: ");
+        String _name = sc.nextLine();
+        
+        libBean.editNhacc(_idnhacc, _name);
+        
+    }    else if (choice == 20) {
+        
+        System.out.print("Enter hanghoa id need edit: ");
+        Long _idhh = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter hanghoa price: ");
+        Long _price = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter nhacc name: ");
+        String _name = sc.nextLine();
+        
+        libBean.editHanghoa(_idhh, _price, _name);
+        
+    }    else if (choice == 21) {
+        
+        System.out.print("Enter hoadon id need edit: ");
+        Long _idhd = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter hoadon money: ");
+        Long _money = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter nhanvien id: ");
+        Long _idnv = Long.parseLong(sc.nextLine());
+        
+        libBean.editHoadon(_idnv, _money, _idnv);
+        
+    }    else if (choice == 22) {
+        
+        System.out.print("Enter nhacc id need remove: ");
+        Long _id = Long.parseLong(sc.nextLine());
+       
+        libBean.deleteNhacc(_id);
+        
+    }    else if (choice == 23) {
+        
+        System.out.print(libBean.showAllNhanvien());
+
+        
+    }    else if (choice == 24) {
+        
+        System.out.print(libBean.showAllTaikhoan());
+
+        
+    }    else if (choice == 25) {
+        
+        System.out.print(libBean.showAllVitri());
+
+        
+    }    else if (choice == 26) {
+        
+        System.out.print(libBean.showAllPhieu());
+
+        
+    }    else if (choice == 27) {
+        
+        System.out.print(libBean.showAllNhacc());
+
+        
+    }    else if (choice == 28) {
+        
+        System.out.print(libBean.showAllHhp());
+
+        
+    }    else if (choice == 29) {
+        
+        System.out.print(libBean.showAllHanghoa());
+
+        
+    }    else if (choice == 30) {
+        
+        System.out.print(libBean.showAllHdhh());
+
+        
+    }    else if (choice == 31) {
+        
+        System.out.print(libBean.showAllHoadon());
+
+        
+    }
     }
     sc.close();
     } catch (NamingException ex)

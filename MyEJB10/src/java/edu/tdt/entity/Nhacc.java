@@ -109,7 +109,7 @@ public class Nhacc implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.tdt.entity.Nhacc[ id=" + id + " ]";
+        return "edu.tdt.entity.Nhacc[ id=" + id + ", name=" + name + " ]";
     }
     
 }

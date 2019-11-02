@@ -135,7 +135,7 @@ public class Phieu implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.tdt.entity.Phieu[ id=" + id + " ]";
+        return "edu.tdt.entity.Phieu[ id=" + id + ", idncc=" + idNcc + ", date=" + date + ", idnv=" + idNv + " ]";
     }
     
 }

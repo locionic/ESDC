@@ -14,6 +14,7 @@ import edu.tdt.entity.Nhanvien;
 import edu.tdt.entity.Phieu;
 import edu.tdt.entity.Taikhoan;
 import edu.tdt.entity.Vitri;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateful;
@@ -62,6 +63,10 @@ public class MySessionBean implements MySessionBeanRemote {
     @Override
     public List<Nhanvien> getNhanvien() {
         return entityManager.createNamedQuery("Nhanvien.findAll").getResultList();
+//        System.out.println("Get dc ne");
+//        for (Nhanvien nv : mylist) {
+//            System.out.println(nv.toString());
+//        }
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -122,7 +127,7 @@ public class MySessionBean implements MySessionBeanRemote {
     @Override
     public void editTaikhoan(Long idnv, String name, String password) {
         
-        Taikhoan a = (Taikhoan) entityManager.createNamedQuery("Taikhoan.findById").setParameter("id", idnv).getSingleResult();
+        Taikhoan a = (Taikhoan) entityManager.createNamedQuery("Taikhoan.findByIdNv").setParameter("idNv", idnv).getSingleResult();
         a.setName(name);
         a.setPassword(password);
         entityManager.merge(a);
@@ -170,26 +175,161 @@ public class MySessionBean implements MySessionBeanRemote {
     @Override
     public void editHhp(Long idp, Long idhh, Date startdate, Date enddate, Long count) {
         
-        //Hhp a = (Hhp) entityManager.cre
+        List<Hhp> mylist = entityManager.createNamedQuery("Hhp.findAll").getResultList();
+        for (Hhp hhp : mylist) {
+            if (hhp.getHhpPK().getIdHh() == idhh && hhp.getHhpPK().getIdP() == idp) {
+                hhp.setCount(count);
+                hhp.setEnddate(enddate);
+                hhp.setStartdate(startdate);
+                entityManager.merge(hhp);
+                break;
+            }
+        }
+        System.out.println("Edit hhp success");
         
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void editHanghoa(Long id, Long price, String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Hanghoa a = (Hanghoa) entityManager.createNamedQuery("Hanghoa.findById").setParameter("id", id).getSingleResult();
+        a.setPrice(price);
+        a.setName(name);
+        entityManager.merge(a);
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void editHdhh(Long idhh, Long idhd, Long count) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<Hdhh> mylist = entityManager.createNamedQuery("Hdhh.findAll").getResultList();
+        for (Hdhh hdhh : mylist) {
+            if (hdhh.getHdhhPK().getIdHd() == idhd && hdhh.getHdhhPK().getIdHh() == idhh) {
+                hdhh.setCount(count);
+                entityManager.merge(hdhh);
+                break;
+            }
+        }
+        System.out.println("Edit hdhh success");
+        
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void editHoadon(Long id, Date date, Long money, Long idnv) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void editHoadon(Long id, Long money, Long idnv) {
+        
+        Hoadon a = (Hoadon) entityManager.createNamedQuery("Hoadon.findById").setParameter("id", id).getSingleResult();
+        a.setMoney(money);
+        a.setMoney(money);
+        Nhanvien nv = (Nhanvien) entityManager.createNamedQuery("Nhanvien.findById").setParameter("id", idnv).getSingleResult();
+        a.setIdNv(nv);
+        
+        entityManager.merge(a);
+        
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    @Override
+    public void deleteNhacc(Long id) {
+        Nhacc ncc = (Nhacc) entityManager.createNamedQuery("Nhacc.findById").setParameter("id", id).getSingleResult();
+        entityManager.remove(ncc);
+    }
+    
+
+    
+    @Override
+    public String showAllNhanvien() {
+        List<Nhanvien> ml = entityManager.createNamedQuery("Nhanvien.findAll").getResultList();
+        String a = "";
+        for (Nhanvien nv : ml) {
+            a = a + nv.toString() + "\n";
+        }
+        return a;
+    }
+
+    @Override
+    public String showAllTaikhoan() {
+        
+        List<Taikhoan> ml = entityManager.createNamedQuery("Taikhoan.findAll").getResultList();
+        String a = "";
+        for (Taikhoan nv : ml) {
+            a = a + nv.toString() + "\n";
+        }
+        return a;
+        
+    }
+
+    @Override
+    public String showAllVitri() {
+        List<Vitri> ml = entityManager.createNamedQuery("Vitri.findAll").getResultList();
+        String a = "";
+        for (Vitri nv : ml) {
+            a = a + nv.toString() + "\n";
+        }
+        return a;
+    }
+
+    @Override
+    public String showAllPhieu() {
+        List<Phieu> ml = entityManager.createNamedQuery("Phieu.findAll").getResultList();
+        String a = "";
+        for (Phieu nv : ml) {
+            a = a + nv.toString() + "\n";
+        }
+        return a;
+    }
+
+    @Override
+    public String showAllHhp() {
+        List<Hhp> ml = entityManager.createNamedQuery("Hhp.findAll").getResultList();
+        String a = "";
+        for (Hhp nv : ml) {
+            a = a + nv.toString() + "\n";
+        }
+        return a;
+    }
+
+    @Override
+    public String showAllHanghoa() {
+        List<Hanghoa> ml = entityManager.createNamedQuery("Hanghoa.findAll").getResultList();
+        String a = "";
+        for (Hanghoa nv : ml) {
+            a = a + nv.toString() + "\n";
+        }
+        return a;
+    }
+
+    @Override
+    public String showAllHdhh() {
+        List<Hdhh> ml = entityManager.createNamedQuery("Hdhh.findAll").getResultList();
+        String a = "";
+        for (Hdhh nv : ml) {
+            a = a + nv.toString() + "\n";
+        }
+        return a; 
+    }
+
+    @Override
+    public String showAllHoadon() {
+        List<Hoadon> ml = entityManager.createNamedQuery("Hoadon.findAll").getResultList();
+        String a = "";
+        for (Hoadon nv : ml) {
+            a = a + nv.toString() + "\n";
+        }
+        return a;    }
+
+    @Override
+    public String showAllNhacc() {
+        List<Nhacc> ml = entityManager.createNamedQuery("Nhacc.findAll").getResultList();
+        String a = "";
+        for (Nhacc nv : ml) {
+            a = a + nv.toString() + "\n";
+        }
+        return a;
+    }
+    
+  
     
     
 }

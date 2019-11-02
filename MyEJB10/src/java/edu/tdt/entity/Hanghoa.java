@@ -134,7 +134,7 @@ public class Hanghoa implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.tdt.entity.Hanghoa[ id=" + id + " ]";
+        return "edu.tdt.entity.Hanghoa[ id=" + id + ", name=" + name + ", price=" + price + " ]";
     }
     
 }

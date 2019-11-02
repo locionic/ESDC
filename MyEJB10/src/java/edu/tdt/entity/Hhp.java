@@ -149,7 +149,7 @@ public class Hhp implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.tdt.entity.Hhp[ hhpPK=" + hhpPK + " ]";
+        return "edu.tdt.entity.Hhp[ idp=" + hhpPK.getIdP() + ", idhh=" + hhpPK.getIdHh() + ", startdate=" + startdate + ", enddate=" + enddate + " ]";
     }
     
 }

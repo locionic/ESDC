@@ -109,7 +109,7 @@ public class Vitri implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.tdt.entity.Vitri[ id=" + id + " ]";
+        return "edu.tdt.entity.Vitri[ id=" + id + ", name=" + name + " ]";
     }
     
 }

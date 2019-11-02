@@ -116,7 +116,7 @@ public class Hdhh implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.tdt.entity.Hdhh[ hdhhPK=" + hdhhPK + " ]";
+        return "edu.tdt.entity.Hdhh[ idhh=" + hdhhPK.getIdHd() + ", idhd=" + hdhhPK.getIdHh() + ", count= " + count + " ]";
     }
     
 }

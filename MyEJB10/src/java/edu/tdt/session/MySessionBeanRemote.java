@@ -5,7 +5,10 @@
  */
 package edu.tdt.session;
 
+import edu.tdt.entity.Hanghoa;
+import edu.tdt.entity.Nhacc;
 import edu.tdt.entity.Nhanvien;
+import edu.tdt.entity.Phieu;
 import edu.tdt.entity.Vitri;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +44,34 @@ public interface MySessionBeanRemote {
     
     public void editHdhh(Long idhh, Long idhd, Long count);
     
-    public void editHoadon(Long id, Date date, Long money, Long idnv);
+    public void editHoadon(Long id, Long money, Long idnv);
     
+    public void deleteNhacc(Long id);
+    
+//    public List<Nhanvien> getAllNhanVien();
+//    public List<Hanghoa> getAllHangHoa();
+//    public List<Vitri> getAllViTri();
+//    public List<Phieu> getAllPhieu();
+//    public List<Nhacc> getAllNhaCC();
+    
+    public String showAllNhanvien();
+    
+    public String showAllTaikhoan();
+    
+    public String showAllVitri();
+    
+    public String showAllPhieu();
+    
+    public String showAllHhp();
+    
+    public String showAllHanghoa();
+    
+    public String showAllHdhh();
+    
+    public String showAllHoadon();
+    
+    public String showAllNhacc();
+    
+   
 
 }

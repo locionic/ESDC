@@ -132,7 +132,7 @@ public class Taikhoan implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.tdt.entity.Taikhoan[ idNv=" + idNv + " ]";
+        return "edu.tdt.entity.Taikhoan[ idNv=" + idNv + ", idvt=" + idVt + ", name=" + name + ", password=" + password + " ]";
     }
     
 }
