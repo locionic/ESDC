@@ -326,7 +326,23 @@ public class MyEJB10Test {
         
         }
         
-    }
+    } else if (choice == 13) {
+        
+        System.out.print("Enter nhanvien id need edit: ");
+        Long _idnv = Long.parseLong(sc.nextLine());
+        
+        System.out.print("Enter nhanvien name: ");
+        String _name = sc.nextLine();
+        
+        System.out.print("Enter nhanvien phone: ");
+        String _phone = sc.nextLine();
+        
+        System.out.print("Enter nhanvien address: ");
+        String _address = sc.nextLine();
+        
+        libBean.editNhanvien(_idnv, _name, _phone, _address);
+        
+    } 
     }
     sc.close();
     } catch (NamingException ex)

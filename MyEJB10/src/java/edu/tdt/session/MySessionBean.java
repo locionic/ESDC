@@ -110,6 +110,86 @@ public class MySessionBean implements MySessionBeanRemote {
         
     }
     
+    @Override
+    public void editNhanvien(Long idnv, String name, String phone, String address) {
+        Nhanvien a = (Nhanvien) entityManager.createNamedQuery("Nhanvien.findById").setParameter("id", idnv).getSingleResult();
+        a.setAddress(address);
+        a.setName(name);
+        a.setPhone(phone);
+        entityManager.merge(a);
+    }
+
+    @Override
+    public void editTaikhoan(Long idnv, String name, String password) {
+        
+        Taikhoan a = (Taikhoan) entityManager.createNamedQuery("Taikhoan.findById").setParameter("id", idnv).getSingleResult();
+        a.setName(name);
+        a.setPassword(password);
+        entityManager.merge(a);
+        
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editVitri(Long idvt, String name) {
+        
+        Vitri a = (Vitri) entityManager.createNamedQuery("Vitri.findById").setParameter("id", idvt).getSingleResult();
+        a.setName(name);
+        entityManager.merge(a);
+        
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editPhieu(Long idp, Long idncc, Long idnv) {
+        
+        Phieu a = (Phieu) entityManager.createNamedQuery("Phieu.findById").setParameter("id", idp).getSingleResult();
+        Nhacc ncc = (Nhacc) entityManager.createNamedQuery("Nhacc.findById").setParameter("id", idncc).getSingleResult();
+        Nhanvien nv = (Nhanvien) entityManager.createNamedQuery("Nhanvien.findById").setParameter("id", idnv).getSingleResult();
+        
+        a.setIdNcc(ncc);
+        a.setIdNv(nv);
+        
+        entityManager.merge(a);
+        
+        
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editNhacc(Long idncc, String name) {
+        
+        Nhacc a = (Nhacc) entityManager.createNamedQuery("Nhacc.findById").setParameter("id", idncc).getSingleResult();
+        a.setName(name);
+        
+        entityManager.merge(a);
+        
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editHhp(Long idp, Long idhh, Date startdate, Date enddate, Long count) {
+        
+        //Hhp a = (Hhp) entityManager.cre
+        
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editHanghoa(Long id, Long price, String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editHdhh(Long idhh, Long idhd, Long count) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void editHoadon(Long id, Date date, Long money, Long idnv) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     
 }

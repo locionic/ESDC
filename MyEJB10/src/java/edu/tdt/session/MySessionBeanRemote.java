@@ -24,6 +24,24 @@ public interface MySessionBeanRemote {
     void addHoadon(Long idnv);
     void addHdhh(Long a, Long b, Long c);
     void addHhp(Long a, Long b, Date c, Date d, Long e);
+
+    public void editNhanvien(Long idnv, String name, String phone, String address);
+    
+    public void editTaikhoan(Long idnv, String name, String password);
+    
+    public void editVitri(Long idvt, String name);
+    
+    public void editPhieu(Long idp, Long idncc, Long idnv);
+    
+    public void editNhacc(Long idncc, String name);
+    
+    public void editHhp(Long idp, Long idhh, Date startdate, Date enddate, Long count);
+    
+    public void editHanghoa(Long id, Long price, String name);
+    
+    public void editHdhh(Long idhh, Long idhd, Long count);
+    
+    public void editHoadon(Long id, Date date, Long money, Long idnv);
     
 
 }
