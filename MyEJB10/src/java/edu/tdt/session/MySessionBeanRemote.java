@@ -28,6 +28,10 @@ public interface MySessionBeanRemote {
     void addHoadon(Long idnv);
     void addHdhh(Long a, Long b, Long c);
     void addHhp(Long a, Long b, Date c, Date d, Long e);
+    
+    
+
+    /**************/
 
     public void editNhanvien(Long idnv, String name, String phone, String address);
     
@@ -73,7 +77,9 @@ public interface MySessionBeanRemote {
     
     public String showAllNhacc();
     
-    public Taikhoan getTaikhoan(String username, String password);
+    public String getTaikhoan(String username, String password);
+    
+    public String getVitriFromTaikhoan(String username, String password);
     
     
 

@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,7 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author truonghongloc
  */
 @Entity
-@Table(name = "taikhoan", catalog = "MyEJB10", schema = "public")
+@Table(name = "taikhoan", catalog = "MyEJB10", schema = "public", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"name"})})
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Taikhoan.findAll", query = "SELECT t FROM Taikhoan t")
@@ -62,13 +64,6 @@ public class Taikhoan implements Serializable {
 
     public Taikhoan(Long idNv) {
         this.idNv = idNv;
-    }
-    
-    public Taikhoan(Taikhoan a) {
-        name = a.name;
-        password = a.password;
-        idVt = a.idVt;
-        nhanvien = a.nhanvien;
     }
 
     public Taikhoan(Long idNv, String name, String password) {

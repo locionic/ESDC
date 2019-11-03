@@ -330,7 +330,7 @@ public class MySessionBean implements MySessionBeanRemote {
     }
     
     @Override
-    public Taikhoan getTaikhoan(String username, String password) {
+    public String getTaikhoan(String username, String password) {
         
         List<Taikhoan> ml = entityManager.createNamedQuery("Taikhoan.findAll").getResultList();
         for (Taikhoan tk : ml) {
@@ -344,6 +344,19 @@ public class MySessionBean implements MySessionBeanRemote {
                 System.out.println("Asa");
             }
         }
+        return null;
+    }
+
+    @Override
+    public String getVitriFromTaikhoan(String username, String password) {
+        
+        List<Taikhoan> ml = entityManager.createNamedQuery("Taikhoan.findAll").getResultList();
+        for (Taikhoan tk : ml) {
+            if (tk.getName().equals(username) && tk.getPassword().equals(password)) {
+                return tk.getIdVt().getName();
+            }
+        }
+        
         return null;
     }
     
