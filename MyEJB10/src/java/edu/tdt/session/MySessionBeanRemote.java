@@ -9,6 +9,7 @@ import edu.tdt.entity.Hanghoa;
 import edu.tdt.entity.Nhacc;
 import edu.tdt.entity.Nhanvien;
 import edu.tdt.entity.Phieu;
+import edu.tdt.entity.Taikhoan;
 import edu.tdt.entity.Vitri;
 import java.util.Date;
 import java.util.List;
@@ -72,6 +73,8 @@ public interface MySessionBeanRemote {
     
     public String showAllNhacc();
     
-   
+    public Taikhoan getTaikhoan(String username, String password);
+    
+    
 
 }

@@ -512,6 +512,16 @@ public class MyEJB10Test {
         System.out.print(libBean.showAllHoadon());
 
         
+    }    else if (choice == 32) {
+        
+        System.out.println("Username: ");
+        String _username = sc.nextLine();
+        System.out.println("Password: ");
+        String _password = sc.nextLine();
+        
+        Taikhoan tk = libBean.getTaikhoan(_username, _password);
+        System.out.println(tk);
+        
     }
     }
     sc.close();

@@ -63,6 +63,13 @@ public class Taikhoan implements Serializable {
     public Taikhoan(Long idNv) {
         this.idNv = idNv;
     }
+    
+    public Taikhoan(Taikhoan a) {
+        name = a.name;
+        password = a.password;
+        idVt = a.idVt;
+        nhanvien = a.nhanvien;
+    }
 
     public Taikhoan(Long idNv, String name, String password) {
         this.idNv = idNv;

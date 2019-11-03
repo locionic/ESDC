@@ -329,7 +329,23 @@ public class MySessionBean implements MySessionBeanRemote {
         return a;
     }
     
-  
+    @Override
+    public Taikhoan getTaikhoan(String username, String password) {
+        
+        List<Taikhoan> ml = entityManager.createNamedQuery("Taikhoan.findAll").getResultList();
+        for (Taikhoan tk : ml) {
+            if (tk.getName().equals(username) && tk.getPassword().equals(password)) {
+                Taikhoan mytk = new Taikhoan();
+                mytk.setIdNv(tk.getIdNv());
+                mytk.setIdVt(tk.getIdVt());
+                mytk.setName(tk.getName());
+                mytk.setNhanvien(tk.getNhanvien());
+                mytk.setPassword(tk.getPassword());
+                System.out.println("Asa");
+            }
+        }
+        return null;
+    }
     
     
 }
