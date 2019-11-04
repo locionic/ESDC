@@ -102,6 +102,8 @@ public class MySessionBean implements MySessionBeanRemote {
         hdhh.setCount(count);
         entityManager.persist(hdhh);
         
+        sumAgain(count, idhh, idhd);
+ 
     }
     
     @Override
@@ -330,21 +332,11 @@ public class MySessionBean implements MySessionBeanRemote {
     }
     
     @Override
-    public String getTaikhoan(String username, String password) {
+    public List<Taikhoan> getTaikhoan() {
         
-        List<Taikhoan> ml = entityManager.createNamedQuery("Taikhoan.findAll").getResultList();
-        for (Taikhoan tk : ml) {
-            if (tk.getName().equals(username) && tk.getPassword().equals(password)) {
-                Taikhoan mytk = new Taikhoan();
-                mytk.setIdNv(tk.getIdNv());
-                mytk.setIdVt(tk.getIdVt());
-                mytk.setName(tk.getName());
-                mytk.setNhanvien(tk.getNhanvien());
-                mytk.setPassword(tk.getPassword());
-                System.out.println("Asa");
-            }
-        }
-        return null;
+        return entityManager.createNamedQuery("Taikhoan.findAll").getResultList();
+        
+        
     }
 
     @Override
@@ -360,5 +352,38 @@ public class MySessionBean implements MySessionBeanRemote {
         return null;
     }
     
+    @Override
+    public void banHang(Long idhh, Long idnv, Long sl) {
+        Hoadon hd = new Hoadon();
+        hd.setDate(new Date());
+        hd.setMoney(0);
+        hd.setIdNv( (Nhanvien) entityManager.createNamedQuery("Nhanvien.findById").setParameter("id", idnv).getSingleResult());
+        entityManager.persist(hd);
+        System.out.println(hd.getId());
+        Hdhh hdhh = new Hdhh(idhh, hd.getId());
+        hdhh.setCount(sl);
+        hd.getHdhhCollection().add(hdhh);
+        entityManager.merge(hd);
+    }
+    
+    @Override
+    public void sumAgain(Long count, Long idhh, Long idhd) {
+        Hoadon hd = (Hoadon) entityManager.createNamedQuery("Hoadon.findById").setParameter("id", idhd).getSingleResult();
+        Hanghoa hh = (Hanghoa) entityManager.createNamedQuery("Hanghoa.findById").setParameter("id", idhh).getSingleResult();
+        hd.setMoney(hd.getMoney() + count * hh.getPrice());
+        entityManager.merge(hd);
+    }
+    
+    @Override
+    public Long checkSL(Long idhh) {
+        
+        Hanghoa hh = (Hanghoa) entityManager.createNamedQuery("Hanghoa.findById").setParameter("id", idhh).getSingleResult();
+        long a = 0;
+        for (Hhp hhp : hh.getHhpCollection()) {
+           a = a + hhp.getCount();
+        }
+        return a;
+        
+    }
     
 }

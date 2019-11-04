@@ -77,9 +77,16 @@ public interface MySessionBeanRemote {
     
     public String showAllNhacc();
     
-    public String getTaikhoan(String username, String password);
+    public List<Taikhoan> getTaikhoan();
     
     public String getVitriFromTaikhoan(String username, String password);
+    
+    /*************************/
+    public void banHang(Long idhh, Long idnv, Long sl);
+    
+    public void sumAgain(Long count, Long idhh, Long idhd);
+    
+    public Long checkSL(Long idhh);
     
     
 
